@@ -1,4 +1,4 @@
-name: dedupe_pbdomain_list
+name: PB Domain Compare
 
 on:
   schedule:
@@ -23,12 +23,12 @@ jobs:
       - name: Run comparison script
         env:
           URLSCAN_API_KEY: ${{ secrets.URLSCAN_API_KEY }}
-        run: python_dedupe_pbdomain list.py
+        run: python pbdomains/dedupe_pbdomain_list.py
 
       - name: Commit and push results
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add pbdomains-archive/
+          git add pbdomains/pbdomains-archive/
           git commit -m "Auto update $(date +'%Y-%m-%d %H:%M')" || echo "No changes"
           git push
