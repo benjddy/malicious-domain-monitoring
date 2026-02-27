@@ -23,7 +23,7 @@ jobs:
       - name: Run comparison script
         env:
           URLSCAN_API_KEY: ${{ secrets.URLSCAN_API_KEY }}
-        run: python dedupe pbdomain list.py
+        run: python_dedupe_pbdomain list.py
 
       - name: Commit and push results
         run: |
