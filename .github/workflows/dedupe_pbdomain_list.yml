@@ -1,4 +1,4 @@
-name: PB Domain Compare
+name: dedupe_pb_domains
 
 on:
   schedule:
