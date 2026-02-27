@@ -1,4 +1,4 @@
-name: dedupe pbdomain list
+name: dedupe_pbdomain_list
 
 on:
   schedule:

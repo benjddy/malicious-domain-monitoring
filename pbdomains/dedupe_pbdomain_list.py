@@ -34,7 +34,7 @@ unique_to_urlscan = csv_domains - json_domains
 # --- Step 4: Output ---
 today = datetime.now().strftime('%Y-%m-%d_%H%M')
 output_file = f'pbdomains-archive/pbdomains_{today}.txt'
-os.makedirs('pbdomains-archive', exist_ok=True)
+os.makedirs('pbdomains_archive', exist_ok=True)
 
 with open(output_file, 'w') as f:
     for domain in sorted(unique_to_urlscan):
