@@ -21,6 +21,13 @@ if os.path.exists(SKIP_LIST_FILE):
 
 print(f"Loaded {len(skip_domains)} apex domains to skip")
 
+# --- Helper function to check skip list ---
+def should_skip(domain):
+    for skip in skip_domains:
+        if domain == skip or domain.endswith('.' + skip):
+            return True
+    return False
+
 # --- Step 1: Get ALL domains from URLScan API (with pagination) ---
 headers = {'API-Key': URLSCAN_API_KEY}
 urlscan_results = []
@@ -85,8 +92,8 @@ for result in urlscan_results:
         filtered_apex.add(domain)
         continue
 
-    # Skip if apex domain is in our manual skip list
-    if apex_domain in skip_domains:
+    # Skip if domain matches our manual skip list
+    if should_skip(domain):
         filtered_skip.add(domain)
         continue
 
