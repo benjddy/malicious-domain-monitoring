@@ -10,6 +10,8 @@ GITHUB_RAW_URL = 'https://raw.githubusercontent.com/MetaMask/eth-phishing-detect
 URLSCAN_SEARCH_URL = 'https://urlscan.io/api/v1/search/'
 SEARCH_QUERY = 'meta:searchhit.search.48499f70-6417-4cce-8d55-daa7b731061c'
 SKIP_LIST_FILE = 'skip_apex_domains.txt'
+ARCHIVE_DIR = 'pbdomains/pbdomains_archive'
+PB_STILL_NEED_BLOCKED = 'pbdomains/pb_still_need_blocked.txt'
 
 # --- Helper: Check if string is an IP address ---
 def is_ip_address(domain):
@@ -37,8 +39,6 @@ if os.path.exists(SKIP_LIST_FILE):
     print(f"Loaded {len(skip_domains)} domains from skip list: {skip_domains}")
 else:
     print(f"WARNING: Skip list not found at {SKIP_LIST_FILE}")
-    print(f"Current working directory: {os.getcwd()}")
-    print(f"Files in current directory: {os.listdir('.')}")
 
 # --- Step 1: Get ALL domains from URLScan API (with pagination) ---
 headers = {'API-Key': URLSCAN_API_KEY}
@@ -97,45 +97,86 @@ for result in urlscan_results:
     if not domain:
         continue
 
-    # Skip IP addresses
     if is_ip_address(domain):
         filtered_ips.add(domain)
         continue
 
-    # Skip if exact domain is already in blacklist
     if domain in json_domains:
         filtered_blacklist.add(domain)
         continue
 
-    # Skip if apex domain is already in blacklist (subdomain covered)
     if apex_domain in json_domains and domain != apex_domain:
         filtered_apex.add(domain)
         continue
 
-    # Skip if domain matches our manual skip list (endswith check)
     if should_skip(domain, skip_domains):
         filtered_skip.add(domain)
         continue
 
     urlscan_domains.add(domain)
 
-# --- Step 4: Output ---
+# --- Step 4: Save archive file (new domains for this run only) ---
 today = datetime.now().strftime('%Y-%m-%d_%H%M')
-output_file = f'pbdomains/pbdomains_archive/pbdomains_{today}.txt'
-os.makedirs('pbdomains/pbdomains_archive', exist_ok=True)
+output_file = f'{ARCHIVE_DIR}/pbdomains_{today}.txt'
+os.makedirs(ARCHIVE_DIR, exist_ok=True)
 
 with open(output_file, 'w') as f:
     for domain in sorted(urlscan_domains):
         f.write(domain + '\n')
 
 print("-" * 50)
+print(f"ARCHIVE RESULTS:")
 print(f"Total results from URLScan: {len(urlscan_results)}")
 print(f"Total in MetaMask blacklist: {len(json_domains)}")
 print(f"IP addresses skipped: {len(filtered_ips)}")
 print(f"Already in blacklist (exact match): {len(filtered_blacklist)}")
 print(f"Subdomains filtered (apex already blocked): {len(filtered_apex)}")
 print(f"Domains filtered (manual skip list): {len(filtered_skip)}")
-if filtered_skip:
-    print(f"Skip list matches: {sorted(filtered_skip)}")
 print(f"New domains NOT in blacklist: {len(urlscan_domains)}")
 print(f"Saved to {output_file}")
+
+# ==============================================================
+# Step 5: Build "still need blocked" list from ALL archived files
+# ==============================================================
+print("")
+print("=" * 50)
+print("BUILDING STILL-NEED-BLOCKED LIST...")
+print("=" * 50)
+
+all_archived_domains = set()
+
+for filename in os.listdir(ARCHIVE_DIR):
+    if filename.endswith('.txt') and filename != '.gitkeep':
+        filepath = os.path.join(ARCHIVE_DIR, filename)
+        with open(filepath, 'r') as f:
+            for line in f:
+                domain = line.strip().lower()
+                if domain:
+                    all_archived_domains.add(domain)
+
+print(f"Total unique domains across all archive files: {len(all_archived_domains)}")
+
+# Filter out domains that have since been added to the blacklist
+pb_still_need_blocked = set()
+for domain in all_archived_domains:
+    # Skip if now in blacklist
+    if domain in json_domains:
+        continue
+
+    # Skip IPs
+    if is_ip_address(domain):
+        continue
+
+    # Skip if on manual skip list
+    if should_skip(domain, skip_domains):
+        continue
+
+    pb_still_need_blocked.add(domain)
+
+# Overwrite the still_need_blocked file (not archived, always current)
+with open(PB_STILL_NEED_BLOCKED, 'w') as f:
+    for domain in sorted(pb_still_need_blocked):
+        f.write(domain + '\n')
+
+print(f"Domains still needing to be blocked: {len(pb_still_need_blocked)}")
+print(f"Saved to {PB_STILL_NEED_BLOCKED}")
