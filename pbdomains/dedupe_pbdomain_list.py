@@ -9,14 +9,36 @@ URLSCAN_API_KEY = os.environ.get('URLSCAN_API_KEY')
 GITHUB_RAW_URL = 'https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/main/src/config.json'
 URLSCAN_SEARCH_URL = 'https://urlscan.io/api/v1/search/'
 SEARCH_QUERY = 'meta:searchhit.search.8834ad57-24f0-4932-9ca3-731e814c7b21'
+SKIP_LIST_FILE = 'pbdomains/skip_apex_domains.txt'
 
-# --- Helper function to check if a string is an IP address ---
+# --- Helper: Check if string is an IP address ---
 def is_ip_address(domain):
     try:
         ipaddress.ip_address(domain)
         return True
     except ValueError:
         return False
+
+# --- Helper: Check if domain matches skip list ---
+def should_skip(domain, skip_list):
+    for skip in skip_list:
+        if domain == skip or domain.endswith('.' + skip):
+            return True
+    return False
+
+# --- Load skip list ---
+skip_domains = set()
+if os.path.exists(SKIP_LIST_FILE):
+    with open(SKIP_LIST_FILE, 'r') as f:
+        for line in f:
+            entry = line.strip().lower()
+            if entry and not entry.startswith('#'):
+                skip_domains.add(entry)
+    print(f"Loaded {len(skip_domains)} domains from skip list: {skip_domains}")
+else:
+    print(f"WARNING: Skip list not found at {SKIP_LIST_FILE}")
+    print(f"Current working directory: {os.getcwd()}")
+    print(f"Files in current directory: {os.listdir('.')}")
 
 # --- Step 1: Get ALL domains from URLScan API (with pagination) ---
 headers = {'API-Key': URLSCAN_API_KEY}
@@ -62,7 +84,9 @@ print(f"Fetched {len(json_domains)} domains from MetaMask blacklist")
 
 # --- Step 3: Extract domains and filter ---
 urlscan_domains = set()
+filtered_blacklist = set()
 filtered_apex = set()
+filtered_skip = set()
 filtered_ips = set()
 
 for result in urlscan_results:
@@ -80,11 +104,17 @@ for result in urlscan_results:
 
     # Skip if exact domain is already in blacklist
     if domain in json_domains:
+        filtered_blacklist.add(domain)
         continue
 
     # Skip if apex domain is already in blacklist (subdomain covered)
     if apex_domain in json_domains and domain != apex_domain:
         filtered_apex.add(domain)
+        continue
+
+    # Skip if domain matches our manual skip list (endswith check)
+    if should_skip(domain, skip_domains):
+        filtered_skip.add(domain)
         continue
 
     urlscan_domains.add(domain)
@@ -102,6 +132,10 @@ print("-" * 50)
 print(f"Total results from URLScan: {len(urlscan_results)}")
 print(f"Total in MetaMask blacklist: {len(json_domains)}")
 print(f"IP addresses skipped: {len(filtered_ips)}")
+print(f"Already in blacklist (exact match): {len(filtered_blacklist)}")
 print(f"Subdomains filtered (apex already blocked): {len(filtered_apex)}")
+print(f"Domains filtered (manual skip list): {len(filtered_skip)}")
+if filtered_skip:
+    print(f"Skip list matches: {sorted(filtered_skip)}")
 print(f"New domains NOT in blacklist: {len(urlscan_domains)}")
 print(f"Saved to {output_file}")
