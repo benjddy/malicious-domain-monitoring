@@ -1,6 +1,7 @@
 import json
 import requests
 import os
+import ipaddress
 from datetime import datetime
 
 # --- CONFIG ---
@@ -8,6 +9,14 @@ URLSCAN_API_KEY = os.environ.get('URLSCAN_API_KEY')
 GITHUB_RAW_URL = 'https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/main/src/config.json'
 URLSCAN_SEARCH_URL = 'https://urlscan.io/api/v1/search/'
 SEARCH_QUERY = 'meta:searchhit.search.8834ad57-24f0-4932-9ca3-731e814c7b21'
+
+# --- Helper function to check if a string is an IP address ---
+def is_ip_address(domain):
+    try:
+        ipaddress.ip_address(domain)
+        return True
+    except ValueError:
+        return False
 
 # --- Step 1: Get ALL domains from URLScan API (with pagination) ---
 headers = {'API-Key': URLSCAN_API_KEY}
@@ -54,6 +63,7 @@ print(f"Fetched {len(json_domains)} domains from MetaMask blacklist")
 # --- Step 3: Extract domains and filter ---
 urlscan_domains = set()
 filtered_apex = set()
+filtered_ips = set()
 
 for result in urlscan_results:
     task = result.get('task', {})
@@ -61,6 +71,11 @@ for result in urlscan_results:
     apex_domain = task.get('apexDomain', '').strip().lower()
 
     if not domain:
+        continue
+
+    # Skip IP addresses
+    if is_ip_address(domain):
+        filtered_ips.add(domain)
         continue
 
     # Skip if exact domain is already in blacklist
@@ -86,6 +101,7 @@ with open(output_file, 'w') as f:
 print("-" * 50)
 print(f"Total results from URLScan: {len(urlscan_results)}")
 print(f"Total in MetaMask blacklist: {len(json_domains)}")
+print(f"IP addresses skipped: {len(filtered_ips)}")
 print(f"Subdomains filtered (apex already blocked): {len(filtered_apex)}")
 print(f"New domains NOT in blacklist: {len(urlscan_domains)}")
 print(f"Saved to {output_file}")
