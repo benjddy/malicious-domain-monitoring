@@ -8,7 +8,7 @@ from datetime import datetime
 URLSCAN_API_KEY = os.environ.get('URLSCAN_API_KEY')
 GITHUB_RAW_URL = 'https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/main/src/config.json'
 URLSCAN_SEARCH_URL = 'https://urlscan.io/api/v1/search/'
-SEARCH_QUERY = 'meta:searchhit.search.8834ad57-24f0-4932-9ca3-731e814c7b21'
+SEARCH_QUERY = 'SEARCH_QUERY = 'meta:searchhit.search.48499f70-6417-4cce-8d55-daa7b731061c''
 SKIP_LIST_FILE = 'pbdomains/skip_apex_domains.txt'
 
 # --- Helper: Check if string is an IP address ---
