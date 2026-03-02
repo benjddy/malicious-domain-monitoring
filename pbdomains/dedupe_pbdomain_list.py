@@ -171,8 +171,18 @@ for domain in all_archived_domains:
     if should_skip(domain, skip_domains):
         continue
 
-    pb_still_need_blocked.add(domain)
+    # Skip if apex domain is already in blacklist
+    parts = domain.split('.')
+    apex_found = False
+    for i in range(len(parts) - 1):
+        potential_apex = '.'.join(parts[i:])
+        if potential_apex in json_domains and potential_apex != domain:
+            apex_found = True
+            break
+    if apex_found:
+        continue
 
+    pb_still_need_blocked.add(domain)
 # Overwrite the still_need_blocked file (not archived, always current)
 with open(PB_STILL_NEED_BLOCKED, 'w') as f:
     for domain in sorted(pb_still_need_blocked):
