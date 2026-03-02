@@ -22,7 +22,7 @@ jobs:
       - name: Run comparison script
         env:
           URLSCAN_API_KEY: ${{ secrets.URLSCAN_API_KEY }}
-        run: python pbdomains/dedupe_pbdomain_list.py
+        run: python pbdomains/get_pb_domains.py
 
       - name: Commit and push results
         run: |
