@@ -140,7 +140,7 @@ print(f"Saved to {output_file}")
 # ==============================================================
 print("")
 print("=" * 50)
-print("BUILDING STILL-NEED-BLOCKED LIST...")
+print("BUILDING PB-STILL-NEED-BLOCKED LIST...")
 print("=" * 50)
 
 all_archived_domains = set()
