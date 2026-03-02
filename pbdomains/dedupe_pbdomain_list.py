@@ -8,25 +8,6 @@ URLSCAN_API_KEY = os.environ.get('URLSCAN_API_KEY')
 GITHUB_RAW_URL = 'https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/main/src/config.json'
 URLSCAN_SEARCH_URL = 'https://urlscan.io/api/v1/search/'
 SEARCH_QUERY = 'meta:searchhit.search.8834ad57-24f0-4932-9ca3-731e814c7b21'
-SKIP_LIST_FILE = 'pbdomains/skip_apex_domains.txt'
-
-# --- Load skip list ---
-skip_domains = set()
-if os.path.exists(SKIP_LIST_FILE):
-    with open(SKIP_LIST_FILE, 'r') as f:
-        for line in f:
-            domain = line.strip().lower()
-            if domain and not domain.startswith('#'):
-                skip_domains.add(domain)
-
-print(f"Loaded {len(skip_domains)} apex domains to skip")
-
-# --- Helper function to check skip list ---
-def should_skip(domain):
-    for skip in skip_domains:
-        if domain == skip or domain.endswith('.' + skip):
-            return True
-    return False
 
 # --- Step 1: Get ALL domains from URLScan API (with pagination) ---
 headers = {'API-Key': URLSCAN_API_KEY}
@@ -73,7 +54,6 @@ print(f"Fetched {len(json_domains)} domains from MetaMask blacklist")
 # --- Step 3: Extract domains and filter ---
 urlscan_domains = set()
 filtered_apex = set()
-filtered_skip = set()
 
 for result in urlscan_results:
     task = result.get('task', {})
@@ -92,11 +72,6 @@ for result in urlscan_results:
         filtered_apex.add(domain)
         continue
 
-    # Skip if domain matches our manual skip list
-    if should_skip(domain):
-        filtered_skip.add(domain)
-        continue
-
     urlscan_domains.add(domain)
 
 # --- Step 4: Output ---
@@ -112,6 +87,5 @@ print("-" * 50)
 print(f"Total results from URLScan: {len(urlscan_results)}")
 print(f"Total in MetaMask blacklist: {len(json_domains)}")
 print(f"Subdomains filtered (apex already blocked): {len(filtered_apex)}")
-print(f"Domains filtered (manual skip list): {len(filtered_skip)}")
 print(f"New domains NOT in blacklist: {len(urlscan_domains)}")
 print(f"Saved to {output_file}")
