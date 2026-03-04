@@ -8,7 +8,7 @@ from datetime import datetime
 URLSCAN_API_KEY = os.environ.get('URLSCAN_API_KEY')
 GITHUB_RAW_URL = 'https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/main/src/config.json'
 URLSCAN_SEARCH_URL = 'https://urlscan.io/api/v1/search/'
-SEARCH_QUERY = 'meta:searchhit.search.48499f70-6417-4cce-8d55-daa7b731061c'
+SEARCH_QUERY = 'meta:searchhit.search.8834ad57-24f0-4932-9ca3-731e814c7b21 AND date:>now-48h'
 SKIP_LIST_FILE = 'skip_apex_domains.txt'
 ARCHIVE_DIR = 'pbdomains/pbdomains_archive'
 PB_STILL_NEED_BLOCKED = 'pbdomains/pb_still_need_blocked.txt'
