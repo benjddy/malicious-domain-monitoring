@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 adml.top
 bitdela.com
 bitinux.com
@@ -14,6 +12,4 @@ ntckcrd.site
 rumexc.one
 saxomem.com
 tlymexc.cyou
->>>>>>> 5e73d5eb31de55be2a7c39c371714d51e041a981
-uniswapv.com
 www.goldsminecompany.com.westunioncoast.com
