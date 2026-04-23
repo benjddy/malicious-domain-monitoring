@@ -153,12 +153,16 @@ for filename in sorted(os.listdir(ARCHIVE_DIR)):
             if domain.startswith("www."):
                 domain = domain[4:]
 
-            # Skip if on manual skip list
-            if should_skip(domain, skip_domains):
+            # Skip IP addresses
+            if is_ip_address(domain):
                 continue
 
             # Skip if already in blacklist
             if domain in json_domains:
+                continue
+
+            # Skip if on manual skip list
+            if should_skip(domain, skip_domains):
                 continue
 
             # Skip if apex domain is already in blacklist
@@ -174,8 +178,10 @@ for filename in sorted(os.listdir(ARCHIVE_DIR)):
 
             pb_still_need_blocked.add(domain)
 
+# Overwrite the still_need_blocked file (not archived, always current)
 with open(PB_STILL_NEED_BLOCKED, 'w') as f:
     for domain in sorted(pb_still_need_blocked):
         f.write(domain + '\n')
 
-print(f"Saved {len(pb_still_need_blocked)} domains still needing blocked to {PB_STILL_NEED_BLOCKED}")
+print(f"Domains still needing to be blocked: {len(pb_still_need_blocked)}")
+print(f"Saved to {PB_STILL_NEED_BLOCKED}")
