@@ -173,7 +173,7 @@ for domain in all_archived_domains:
 
     # Strip "www." prefix
     if domain.startswith("www."):
-    domain = domain[4:]
+        domain = domain[4:]
 
     # Skip if on manual skip list
     if should_skip(domain, skip_domains):
