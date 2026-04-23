@@ -97,6 +97,10 @@ for result in urlscan_results:
     if not domain:
         continue
 
+    # Strip "www." prefix
+    if domain.startswith("www."):
+        domain = domain[4:]
+
     if is_ip_address(domain):
         filtered_ips.add(domain)
         continue
