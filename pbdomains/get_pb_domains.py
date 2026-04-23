@@ -28,20 +28,18 @@ def should_skip(domain, skip_list):
             return True
     return False
 
-# --- Load skip list ---
+# --- Step 0: Load skip list ---
 skip_domains = set()
 if os.path.exists(SKIP_LIST_FILE):
     with open(SKIP_LIST_FILE, 'r') as f:
         for line in f:
-            entry = line.strip().lower()
-            if entry and not entry.startswith('#'):
-                skip_domains.add(entry)
-    print(f"Loaded {len(skip_domains)} domains from skip list: {skip_domains}")
-else:
-    print(f"WARNING: Skip list not found at {SKIP_LIST_FILE}")
+            line = line.strip().lower()
+            if line and not line.startswith('#'):
+                skip_domains.add(line)
 
-# --- Step 1: Get ALL domains from URLScan API (with pagination) ---
-headers = {'API-Key': URLSCAN_API_KEY}
+print(f"Loaded {len(skip_domains)} skip domains")
+
+# --- Step 1: Query URLScan API with pagination ---
 urlscan_results = []
 search_after = None
 
@@ -53,7 +51,12 @@ while True:
     if search_after:
         params['search_after'] = search_after
 
-    response = requests.get(URLSCAN_SEARCH_URL, headers=headers, params=params)
+    headers = {
+        'API-Key': URLSCAN_API_KEY,
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.get(URLSCAN_SEARCH_URL, params=params, headers=headers)
     data = response.json()
     results = data.get('results', [])
 
@@ -128,73 +131,51 @@ with open(output_file, 'w') as f:
     for domain in sorted(urlscan_domains):
         f.write(domain + '\n')
 
-print("-" * 50)
-print(f"ARCHIVE RESULTS:")
-print(f"Total results from URLScan: {len(urlscan_results)}")
-print(f"Total in MetaMask blacklist: {len(json_domains)}")
-print(f"IP addresses skipped: {len(filtered_ips)}")
-print(f"Already in blacklist (exact match): {len(filtered_blacklist)}")
-print(f"Subdomains filtered (apex already blocked): {len(filtered_apex)}")
-print(f"Domains filtered (manual skip list): {len(filtered_skip)}")
-print(f"New domains NOT in blacklist: {len(urlscan_domains)}")
-print(f"Saved to {output_file}")
+print(f"\nSaved {len(urlscan_domains)} new domains to {output_file}")
+print(f"Filtered out: {len(filtered_blacklist)} already in blacklist, "
+      f"{len(filtered_apex)} apex matched, {len(filtered_skip)} skipped, "
+      f"{len(filtered_ips)} IPs")
 
-# ==============================================================
-# Step 5: Build "still need blocked" list from ALL archived files
-# ==============================================================
-print("")
-print("=" * 50)
-print("BUILDING PB-STILL-NEED-BLOCKED LIST...")
-print("=" * 50)
-
-all_archived_domains = set()
-
-for filename in os.listdir(ARCHIVE_DIR):
-    if filename.endswith('.txt') and filename != '.gitkeep':
-        filepath = os.path.join(ARCHIVE_DIR, filename)
-        with open(filepath, 'r') as f:
-            for line in f:
-                domain = line.strip().lower()
-                if domain:
-                    all_archived_domains.add(domain)
-
-print(f"Total unique domains across all archive files: {len(all_archived_domains)}")
-
-# Filter out domains that have since been added to the blacklist
+# --- Step 5: Build cumulative "still need blocked" list ---
 pb_still_need_blocked = set()
-for domain in all_archived_domains:
-    # Skip if now in blacklist
-    if domain in json_domains:
+
+for filename in sorted(os.listdir(ARCHIVE_DIR)):
+    if not filename.endswith('.txt'):
         continue
+    filepath = os.path.join(ARCHIVE_DIR, filename)
+    with open(filepath, 'r') as f:
+        for line in f:
+            domain = line.strip().lower()
+            if not domain:
+                continue
 
-    # Skip IPs
-    if is_ip_address(domain):
-        continue
+            # Strip "www." prefix
+            if domain.startswith("www."):
+                domain = domain[4:]
 
-    # Strip "www." prefix
-    if domain.startswith("www."):
-        domain = domain[4:]
+            # Skip if on manual skip list
+            if should_skip(domain, skip_domains):
+                continue
 
-    # Skip if on manual skip list
-    if should_skip(domain, skip_domains):
-        continue
+            # Skip if already in blacklist
+            if domain in json_domains:
+                continue
 
-    # Skip if apex domain is already in blacklist
-    parts = domain.split('.')
-    apex_found = False
-    for i in range(len(parts) - 1):
-        potential_apex = '.'.join(parts[i:])
-        if potential_apex in json_domains and potential_apex != domain:
-            apex_found = True
-            break
-    if apex_found:
-        continue
+            # Skip if apex domain is already in blacklist
+            parts = domain.split('.')
+            apex_found = False
+            for i in range(len(parts) - 1):
+                potential_apex = '.'.join(parts[i:])
+                if potential_apex in json_domains and potential_apex != domain:
+                    apex_found = True
+                    break
+            if apex_found:
+                continue
 
-    pb_still_need_blocked.add(domain)
-# Overwrite the still_need_blocked file (not archived, always current)
+            pb_still_need_blocked.add(domain)
+
 with open(PB_STILL_NEED_BLOCKED, 'w') as f:
     for domain in sorted(pb_still_need_blocked):
         f.write(domain + '\n')
 
-print(f"Domains still needing to be blocked: {len(pb_still_need_blocked)}")
-print(f"Saved to {PB_STILL_NEED_BLOCKED}")
+print(f"Saved {len(pb_still_need_blocked)} domains still needing blocked to {PB_STILL_NEED_BLOCKED}")
