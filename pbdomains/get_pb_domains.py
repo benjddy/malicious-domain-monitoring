@@ -2,7 +2,7 @@ import json
 import requests
 import os
 import ipaddress
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # --- CONFIG ---
 URLSCAN_API_KEY = os.environ.get('URLSCAN_API_KEY')
@@ -136,36 +136,38 @@ print(f"Filtered out: {len(filtered_blacklist)} already in blacklist, "
       f"{len(filtered_apex)} apex matched, {len(filtered_skip)} skipped, "
       f"{len(filtered_ips)} IPs")
 
-# --- Step 5: Build cumulative "still need blocked" list ---
+# --- Step 5: Build cumulative "still need blocked" list (last 30 days only) ---
 pb_still_need_blocked = set()
+cutoff_date = datetime.now() - timedelta(days=30)
 
 for filename in sorted(os.listdir(ARCHIVE_DIR)):
     if not filename.endswith('.txt'):
         continue
+
+    # Skip files older than 30 days
+    try:
+        date_str = filename.replace('pbdomains_', '').replace('.txt', '')
+        file_date = datetime.strptime(date_str, '%Y-%m-%d_%H%M')
+    except ValueError:
+        continue
+    if file_date < cutoff_date:
+        continue
+
     filepath = os.path.join(ARCHIVE_DIR, filename)
     with open(filepath, 'r') as f:
         for line in f:
             domain = line.strip().lower()
             if not domain:
                 continue
-
-            # Strip "www." prefix
             if domain.startswith("www."):
                 domain = domain[4:]
-
-            # Skip IP addresses
             if is_ip_address(domain):
                 continue
-
-            # Skip if already in blacklist
             if domain in json_domains:
                 continue
-
-            # Skip if on manual skip list
             if should_skip(domain, skip_domains):
                 continue
 
-            # Skip if apex domain is already in blacklist
             parts = domain.split('.')
             apex_found = False
             for i in range(len(parts) - 1):
