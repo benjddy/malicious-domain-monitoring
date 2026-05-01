@@ -1,0 +1,34 @@
+name: Key Phishing Domain Compare
+
+on:
+  schedule:
+    - cron: '0 8,20 * * *'
+  workflow_dispatch:
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run comparison script
+        env:
+          URLSCAN_API_KEY: ${{ secrets.URLSCAN_API_KEY }}
+        run: python key_phishing_domains/get_key_phishing_domains.py
+
+      - name: Commit and push results
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add key_phishing_domains/key_phishing_domains_archive/
+          git add key_phishing_domains/kp_still_need_blocked.txt
+          git commit -m "Auto update KP $(date +'%Y-%m-%d %H:%M')" || echo "No changes"
+          git push
