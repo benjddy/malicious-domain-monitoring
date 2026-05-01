@@ -137,7 +137,7 @@ print(f"Filtered out: {len(filtered_blacklist)} already in blacklist, "
       f"{len(filtered_ips)} IPs")
 
 # --- Step 5: Build cumulative "still need blocked" list (last 30 days only) ---
-pb_still_need_blocked = set()
+KP_still_need_blocked = set()
 cutoff_date = datetime.now() - timedelta(days=30)
 
 for filename in sorted(os.listdir(ARCHIVE_DIR)):
@@ -178,13 +178,13 @@ for filename in sorted(os.listdir(ARCHIVE_DIR)):
             if apex_found:
                 continue
 
-            pb_still_need_blocked.add(domain)
+            KP_still_need_blocked.add(domain)
 
 # Overwrite the still_need_blocked file (not archived, always current)
-with open(PB_STILL_NEED_BLOCKED, 'w') as f:
-    for domain in sorted(pb_still_need_blocked):
+with open(KP_STILL_NEED_BLOCKED, 'w') as f:
+    for domain in sorted(KP_still_need_blocked):
         f.write(domain + '\n')
 
-print(f"Domains still needing to be blocked: {len(pb_still_need_blocked)}")
-print(f"Saved to {PB_STILL_NEED_BLOCKED}")
+print(f"Domains still needing to be blocked: {len(KP_still_need_blocked)}")
+print(f"Saved to {KP_STILL_NEED_BLOCKED}")
 
