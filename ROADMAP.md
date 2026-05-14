@@ -11,8 +11,7 @@
 - [x] **Consolidate duplicate scripts** — merged into `get_domains.py`, processes all feeds from `config.json`
 - [x] **Remove manual pb flow** — deleted `manual_pb.csv` and `pb_manual_csv.py`
 - [x] **Extract hardcoded config** — all config now lives in `config.json`
-- [ ] **Add a README** — document how to run the scripts, required env vars
-  (`URLSCAN_API_KEY`), and what each component does
+- [x] **Add a README** — documents setup, usage, how to add feeds, and output files
 
 ### Detection
 

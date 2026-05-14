@@ -49,4 +49,4 @@ Processes all feeds defined in `config.json`. To add a new feed, add an entry to
 1. ~~**Consolidate scripts**~~ — done
 2. ~~**Remove manual pb flow**~~ — done
 3. ~~**Extract hardcoded config**~~ — done
-4. **Add a README** — setup instructions, env vars, how to run
+4. ~~**Add a README**~~ — done
