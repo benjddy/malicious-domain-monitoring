@@ -10,16 +10,14 @@ URLScan.io saved searches, filters results against the MetaMask phishing blackli
 
 ```
 malicious-domain-monitoring/
+├── get_domains.py                    # Single script that processes all feeds
+├── config.json                       # Feed definitions, URLs, paths
 ├── key_phishing_domains/
-│   ├── get_key_phishing_domains.py   # Main script for key phishing feed
 │   ├── kp_still_need_blocked.txt     # Rolling 30-day list of unblocked domains
 │   └── key_phishing_domains_archive/ # Per-run snapshots
 ├── pbdomains/
-│   ├── get_pb_domains.py             # Main script for pb feed (identical logic)
 │   ├── pb_still_need_blocked.txt     # Rolling 30-day list of unblocked domains
-│   ├── pbdomains_archive/            # Per-run snapshots
-│   ├── manual_pb.csv                 # Manual domain list (to be deleted)
-│   └── pb_manual_csv.py              # Manual CSV processor (to be deleted)
+│   └── pbdomains_archive/            # Per-run snapshots
 ├── skip_apex_domains.txt             # Apex domains to exclude from both pipelines
 └── ROADMAP.md
 ```
@@ -37,12 +35,18 @@ malicious-domain-monitoring/
 
 - `URLSCAN_API_KEY` — required for URLScan API access
 
+## How to Run
+
+```bash
+python get_domains.py
+```
+
+Processes all feeds defined in `config.json`. To add a new feed, add an entry to the
+`feeds` object in `config.json` with the URLScan search UUID and output paths.
+
 ## Roadmap (current priorities)
 
-1. **Consolidate scripts** — merge `get_key_phishing_domains.py` and `get_pb_domains.py`
-   into one configurable script; the two are identical except for the URLScan search query
-   UUID and output paths
-2. **Remove manual pb flow** — delete `manual_pb.csv` and `pb_manual_csv.py`
-3. **Extract hardcoded config** — URLScan query UUIDs, file paths, and the GitHub URL
-   should live in a shared config file or `.env`, not inline in the scripts
+1. ~~**Consolidate scripts**~~ — done
+2. ~~**Remove manual pb flow**~~ — done
+3. ~~**Extract hardcoded config**~~ — done
 4. **Add a README** — setup instructions, env vars, how to run

@@ -8,11 +8,9 @@
 
 ### Efficiency & Organization
 
-- [ ] **Consolidate duplicate scripts** — merge `get_key_phishing_domains.py` and
-  `get_pb_domains.py` into a single configurable script that accepts a feed as input
-- [ ] **Remove manual pb flow** — delete `manual_pb.csv` and `pb_manual_csv.py`
-- [ ] **Extract hardcoded config** — move URLScan query UUIDs, file paths, and the
-  GitHub URL out of the scripts and into a shared config file or `.env`
+- [x] **Consolidate duplicate scripts** — merged into `get_domains.py`, processes all feeds from `config.json`
+- [x] **Remove manual pb flow** — deleted `manual_pb.csv` and `pb_manual_csv.py`
+- [x] **Extract hardcoded config** — all config now lives in `config.json`
 - [ ] **Add a README** — document how to run the scripts, required env vars
   (`URLSCAN_API_KEY`), and what each component does
 
