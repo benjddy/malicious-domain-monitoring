@@ -1,5 +1,3 @@
-aivest.live
-bituniswap.com
 coingekx.com
 cryptocscex.com
 forbestrading.com.transcorpdeliveryservice.info
@@ -7,8 +5,6 @@ gmosa.com
 iodj.com
 m.currencyexus.cc
 mastercloudventure.com
-nasdaqmaxflc.com
-octaipro2.com
 onchain-ex.com
 onchaindataai.com
 pc.rodrigobertotti.com
@@ -16,7 +12,5 @@ petiolesss.top
 rvelix.com
 startup.web3-world.com
 ubshi.com
-webtrader.epenessx-racyx.com
 webtrader.fabsecuritie.com
 webtrader.theexchangetraderspro.io
-weexte.com
