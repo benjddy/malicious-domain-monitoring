@@ -1,11 +1,14 @@
+admin.bitget-data.it.com
 adminmng.faccebookcngg.com
 arcvexa.com
 auxcoin.one
 bgcore.net
 billynatinal.com
 bing-x.one
+bitget-data.it.com
 bituniswap.com
 btcpex.com
+bullscrytall.com
 bybit8.org
 bybvgd.com
 certiverge.tizml.com
@@ -39,6 +42,7 @@ startup.web3-global.com
 swapdapp.vip
 thecoinhub.top
 tokencs.cc
+tomotobit.xyz
 trustbybit.com
 trxweb3.org
 tvlexs.com
