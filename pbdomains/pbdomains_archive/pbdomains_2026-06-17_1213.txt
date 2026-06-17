@@ -1,7 +1,6 @@
 bing-x.top
 bitbridgeeu.com
 bitpoepta.com
-bituniswap.com
 boitcoin.com
 cexsmasmk.com
 ckramx.com
@@ -14,4 +13,3 @@ my1.finance
 myinteractivesolutionfx.com
 safepa.top
 web.webconseneses.shop
-web3bitgetwallet.market
