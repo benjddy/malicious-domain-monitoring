@@ -31,13 +31,11 @@ bitevents.cyou
 biteventss.cyou
 bitminingarea.com
 bitpoepta.com
-bituniswap.com
 bnevent.io
 bnevent.org
 bnevents.cn
 bnevents.cyou
 bnevents.org
-boitcoin.com
 btcboxjp.net
 btexvip.com
 bttcc.cc
@@ -117,7 +115,6 @@ m.lplgloballsm.cc
 m.sbcmax.top
 mfmskkvjsnnsnajprroon.cc
 mitirtade.com
-my1.finance
 myinteractivesolutionfx.com
 nexcoinlucky.com
 nysees.top
@@ -148,7 +145,6 @@ wangyix.icu
 wangyix.shop
 wangyix.top
 web.webconseneses.shop
-web3bitgetwallet.market
 web3defihub.xyz
 weexone.asia
 wh-kex-pro.com
