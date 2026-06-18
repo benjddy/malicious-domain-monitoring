@@ -22,7 +22,6 @@ bgcore.sbs
 bgtrust.cn
 bgtrust.io
 bgtrust.net
-bing-x.top
 bingx.cam
 bingx.lol
 bitbaby.live
@@ -40,7 +39,6 @@ bnevent.org
 bnevents.cn
 bnevents.cyou
 bnevents.org
-boitcoin.com
 btcboxjp.net
 btexvip.com
 bttcc.cc
@@ -50,7 +48,6 @@ bwevent.io
 bwevent.org
 cexsmasmk.com
 cionhub.top
-ckramx.com
 cmecbot.one
 cnshiyou.cc
 cnshiyou.one
@@ -122,11 +119,9 @@ kucoinus.icu
 kucoinus.shop
 m.bingx.cam
 m.bingx.lol
-m.lplgloballsm.cc
 m.sbcmax.top
 mfmskkvjsnnsnajprroon.cc
 mitirtade.com
-my1.finance
 myinteractivesolutionfx.com
 nexcoinlucky.com
 nysees.top
@@ -136,7 +131,6 @@ okzoz.com
 oticquant.com
 oticquantss.com
 qdrbxa.cn
-safepa.top
 snznnzbcnsjsubehsjajka.cc
 spokx.com
 stantrade.org
@@ -156,8 +150,6 @@ wangyix.cyou
 wangyix.icu
 wangyix.shop
 wangyix.top
-web.webconseneses.shop
-web3bitgetwallet.market
 web3defihub.xyz
 weexone.asia
 wh-kex-pro.com
