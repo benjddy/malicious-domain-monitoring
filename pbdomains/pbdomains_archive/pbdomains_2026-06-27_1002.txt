@@ -28,7 +28,6 @@ savings.web.id
 smartcoinvnn.live
 sxsvi.com
 user.altacon-investment.co
-web3bitgetwallet.market
 web3jpa.com
 webtrader.aptos-ai.net
 webtrader.blackr.trade
