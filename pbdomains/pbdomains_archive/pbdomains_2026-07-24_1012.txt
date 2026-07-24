@@ -2,7 +2,6 @@
 aitokentrust.com
 bic-token.net
 bituniswap.com
-blocxhuba.com
 blovix.net
 buawscience.bond
 cryptocsscud.com
@@ -42,7 +41,6 @@ web.tkai4.cyou
 web.tkai6.cyou
 web.tkai7.cyou
 web.trustcorexd.com
-web3bitgetwallet.market
 web3crypto.net
 web3defi.vip
 web3kk.com
