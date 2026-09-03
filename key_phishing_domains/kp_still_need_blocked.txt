@@ -1,2 +1,3 @@
 catecoinsrevshare.pro
+hyper-liquid-s.online
 walletconnectdapp.pages.dev
