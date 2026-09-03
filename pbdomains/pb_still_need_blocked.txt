@@ -98,6 +98,7 @@ dappweb.org
 deficrypto.vip
 defisafepal.org
 demixdigitalmarkets.cfd
+deribitpro.com
 dexv6.com
 dmtdg.cc
 dmtdg.vip
@@ -111,6 +112,7 @@ ethog.com
 ethv2.com
 ethv3.cc
 ethv3.com
+exodusho.ink
 exodusprob.cc
 explore.stglen.com
 factionus8.com
@@ -204,6 +206,7 @@ m.vipok.im
 m.vipokex.com
 m.web3hk.club
 m.xtzulin.com
+me8769.lol
 merrillexml.asia
 merrillexml.org
 merrillweb3.asia
@@ -231,7 +234,10 @@ onchainex.vip
 orange-white.miramaxs.me
 orange-white.sdqwdqwd.com
 pc.dcgcoinn.com
+pc.deribitpro.com
+pc.finanisweb3.net
 pc.jinmas.xyz
+pc.web3o.ai
 purple-blue.miramaxs.me
 purple-blue.sdqwdqwd.com
 purple-white.miramaxs.me
