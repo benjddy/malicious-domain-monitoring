@@ -1,3 +1,4 @@
+coinsolution-aac.pages.dev
 hyper-liquid-s.online
 otcdesk-uac.pages.dev
 walletconnectdapp.pages.dev
