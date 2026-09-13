@@ -3,6 +3,7 @@
 accurategainvest.sbs
 admin.deribitus.top
 admin.stellar-markets.top
+api.djksiokstest.cc
 app.ascendlyorg.com
 bit-web3.com
 bitmcxpro.com
@@ -40,8 +41,6 @@ foxprocess.com
 futuretradessecure.click
 g-finwealthfx-investments.com
 galaxyetherchain.com
-gfo-block.com
-gfo-chain.com
 gfo-xb.com
 gfo-xc.com
 gfo-xk.com
