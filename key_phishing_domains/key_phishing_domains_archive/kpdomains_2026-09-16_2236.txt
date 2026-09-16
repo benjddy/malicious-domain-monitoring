@@ -1,0 +1,2 @@
+allcointoken.pages.dev
+index-aqu.pages.dev
