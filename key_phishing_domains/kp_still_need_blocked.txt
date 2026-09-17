@@ -1,4 +1,5 @@
 allcointoken.pages.dev
+coin-testcoin.pages.dev
 coinsolution-aac.pages.dev
 hyper-liquid-s.online
 index-aqu.pages.dev
