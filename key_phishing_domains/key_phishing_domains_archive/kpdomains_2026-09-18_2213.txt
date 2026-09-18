@@ -1,0 +1,2 @@
+coin-testcoin.pages.dev
+coinsolution-aac.pages.dev
