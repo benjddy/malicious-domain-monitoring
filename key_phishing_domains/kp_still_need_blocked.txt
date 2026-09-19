@@ -1,6 +1,8 @@
 allcointoken.pages.dev
 coin-testcoin.pages.dev
 coinsolution-aac.pages.dev
+fablestokenclaim.pages.dev
 hyper-liquid-s.online
 index-aqu.pages.dev
 otcdesk-uac.pages.dev
+paidreward.pages.dev
