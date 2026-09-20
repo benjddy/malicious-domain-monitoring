@@ -1,12 +1,6 @@
-allcointoken.pages.dev
-coin-testcoin.pages.dev
-coinsolution-aac.pages.dev
 fablestokenclaim.pages.dev
 hashrewardclaim.pages.dev
-hyper-liquid-s.online
-index-aqu.pages.dev
 lpadrewardclaim.pages.dev
-otcdesk-uac.pages.dev
 paiddogerewardclaim.pages.dev
 paidreward.pages.dev
 sentryrewardclaim.pages.dev
