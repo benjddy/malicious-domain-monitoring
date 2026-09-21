@@ -1,0 +1,2 @@
+bitcoinpizza.pages.dev
+lpadrewardclaim.pages.dev
