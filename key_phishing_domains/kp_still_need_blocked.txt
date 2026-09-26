@@ -1,5 +1,6 @@
 allcointoken.pages.dev
 bitcoinpizza.pages.dev
+coin-memowwc.pages.dev
 coin-testcoin.pages.dev
 coinsolution-aac.pages.dev
 fablestokenclaim.pages.dev
