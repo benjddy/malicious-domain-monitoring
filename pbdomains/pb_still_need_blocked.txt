@@ -1,5 +1,6 @@
 104.244.91.132.16clouds.com
 104.244.91.132.nip.io
+aegetpro.co
 apexunitymarket.com
 api.vnmonlineslike.cc
 app.ascendlyorg.com
@@ -47,8 +48,10 @@ goldendigest.ltd
 gtcfxfr.com
 h5.devtltiie.biz
 h5.devtltiie.shop
+h5.luno-phl.com
 huobi016.com
 huobi060.com
+huobi878.com
 icebsu.com
 investpayglobal.com
 kucoinyvip.com
@@ -92,5 +95,6 @@ wallatbtca.com
 wealthgroundbreakers.cc
 web3-bit.com
 webtrader.prime-profit.net
+webullhux.com
 xpeedprimetrad.world
 yottastone.com
