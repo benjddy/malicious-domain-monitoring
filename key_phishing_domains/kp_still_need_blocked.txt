@@ -6,7 +6,6 @@ coinsolution-aac.pages.dev
 fablestokenclaim.pages.dev
 fomolivestream.forum
 hashrewardclaim.pages.dev
-hyper-liquid-s.online
 index-aqu.pages.dev
 lpadrewardclaim.pages.dev
 otcdesk-uac.pages.dev
