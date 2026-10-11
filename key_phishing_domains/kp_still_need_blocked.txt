@@ -8,7 +8,6 @@ fomolivestream.forum
 hashrewardclaim.pages.dev
 index-aqu.pages.dev
 lpadrewardclaim.pages.dev
-otcdesk-uac.pages.dev
 paiddogerewardclaim.pages.dev
 paidreward.pages.dev
 sentryrewardclaim.pages.dev
