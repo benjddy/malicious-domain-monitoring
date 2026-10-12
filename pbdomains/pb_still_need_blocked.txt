@@ -1,5 +1,6 @@
 104.204.201.35.bc.googleusercontent.com
 app.ascendlyorg.com
+area.ormindaclient.org
 batonhoufa.com
 batonproge.com
 batonqgoli.com
@@ -11,6 +12,8 @@ bituniswap.com
 bozel.net
 bybited.com
 capitalboomglobe.com
+cmebitweb3.com
+cmewebetf.com
 coininves.com
 coinmax.online
 coinstarinvestments.com
@@ -28,13 +31,17 @@ g-finwealthfx-investments.com
 goldcapglobal.com
 goldendigest.ltd
 growthaffirmmanagementpro.live
+h5.bitget.fashion
 investmen.game
 investpayglobal.com
 investwfg.net
 investwfg.org
 irongatesmarkets.com
 logicmen.com
+m.deltamarketpro.com
 mail.coinstridehub.live
+mecaniqueprotrading.com
+mexcnet.top
 nexatrademarkets.com
 nexte.info
 nexte.vip
@@ -61,6 +68,7 @@ sourceweb3.com
 sourceweb365.com
 sourcexss.com
 stockfinancetraders.com
+stockoxexperts.click.unitstrusts.click
 tvledx.cc
 ucrpyto.com
 undefichain.com
