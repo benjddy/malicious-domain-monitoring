@@ -1,9 +1,6 @@
 bitcoinpizza.pages.dev
 coin-memowwc.pages.dev
-fablestokenclaim.pages.dev
 fomolivestream.forum
-hashrewardclaim.pages.dev
 lpadrewardclaim.pages.dev
 paiddogerewardclaim.pages.dev
-paidreward.pages.dev
 sentryrewardclaim.pages.dev
