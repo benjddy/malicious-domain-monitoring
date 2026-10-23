@@ -1,3 +1,2 @@
-bitcoinpizza.pages.dev
 coin-memowwc.pages.dev
 fomolivestream.forum
