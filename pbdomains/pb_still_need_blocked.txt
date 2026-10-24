@@ -7,6 +7,7 @@ admins.mexcglobal.cc
 admins.mexcglobal.top
 admins.mexcglobal.vip
 aitrade-hkg.com
+amazon-ghd.com
 app-bictoken.com
 app.ascendlyorg.com
 app.basekx-imtoken.com
@@ -27,6 +28,7 @@ bgetai.com
 binarytradeexchange.com
 bitytglobal.com
 bt1.nxmgwf.cn
+bukeys.com
 bybited.com
 capitalboomglobe.com
 coincheck.tw
@@ -122,9 +124,11 @@ pioutss.org
 pl2.plsource.eu.cc
 primetagomi.com
 purlkion.org
+quantumcapitalls.top
 qwes56536fsc.eu.cc
 qwsax.cc
 rainbitg.com
+rainbowaap.net
 rainbowaap.org
 rainbowapp.org
 rainbowbett.com
@@ -144,6 +148,7 @@ sourcedefi.com
 sourceweb3.com
 sourceweb365.com
 stockfinancetraders.com
+stockstraders.net
 tcghz.com
 teconleal.org
 thevgtech.com
@@ -179,6 +184,7 @@ x-pay.win
 ximcoiin.com
 ximcoiins.top
 ximcooinxs.top
+xmantf.com
 xnek.top
 xnke.top
 yfdnvoin.com
