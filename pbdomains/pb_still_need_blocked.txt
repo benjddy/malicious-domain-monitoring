@@ -11,6 +11,7 @@ aevora-us.com
 aevora-us.net
 altje-wejeiwofjs.com
 altje-wejeiwopvj.com
+aplustradespro.com
 app.bicon-im.com
 app.bicon-im.vip
 app.bicon-tp.com
@@ -23,7 +24,6 @@ area.praxesplus.com
 auranetapp.com
 beaaz.com
 beaconmarketscheme.live
-binhgfd-3041.github.io
 bitbridgei.com
 bitsptrading.com
 blkassetmanagers.com
@@ -85,6 +85,7 @@ h5.bicon-im.vip
 h5.bicon-tp.com
 h5.bicon-tp.vip
 habibicex.exchange
+ht999.kgcex.xyz
 icatrade.cc
 icatrade.click
 icatrade.cyou
@@ -146,8 +147,8 @@ satoshilabs.kr
 site.hkbtc.tw
 solvexatrading.com
 star2.gd-168.com
-stockfinancetraders.com
 stocmarklivetra.org
+sylvindracollective.online
 tasmanfx.qpon
 teslastocktrends.com
 trade.swaprem.top
@@ -157,6 +158,9 @@ tvigemx.vip
 tyvorentvip.com
 tyvorentvip.net
 tyvorentvip.org
+v3-core.com
+v3-forge.com
+v3-protocol.com
 valtremontaris.com
 vestradofx.com
 vtmarketsisb.com
@@ -166,6 +170,7 @@ web.bicon-im.com
 web.bicon-im.vip
 web.bicon-tp.vip
 web.centuries.cc
+web.kgcex.xyz
 web.nbptawifjs.com
 web.nbptqjfiwl.com
 web.nbptsjfiwox.com
@@ -181,6 +186,7 @@ weexte.com
 xexpro.com
 xiehou99.com
 yulbiite.com
+zionexbit.com
 zrya-app.com
 zts7f.com
 zyinter.ai
